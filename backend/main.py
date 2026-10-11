@@ -76,6 +76,32 @@ def home():
 
 
 # =========================
+# PREVIOUS REPORTS ROUTE
+# =========================
+
+@app.get("/reports")
+def get_reports():
+    reports = list(reports_collection.find().sort("created_at", -1))
+
+    formatted_reports = []
+    for report in reports:
+        formatted_reports.append({
+            "report_id": str(report.get("_id", "")),
+            "filename": report.get("filename", "Unknown file"),
+            "latitude": report.get("latitude"),
+            "longitude": report.get("longitude"),
+            "detections": report.get("detections", []),
+            "created_at": (
+                report["created_at"].isoformat()
+                if report.get("created_at")
+                else None
+            ),
+        })
+
+    return formatted_reports
+
+
+# =========================
 # DETECTION ROUTE
 # =========================
 

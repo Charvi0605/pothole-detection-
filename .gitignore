@@ -4,7 +4,7 @@ __pycache__/
 venv/
 .venv/
 
-# Environment variables
+# Environment variables and secrets
 .env
 .env.*
 
@@ -15,9 +15,16 @@ dist/
 # VS Code
 .vscode/
 
-# AI model files
+# YOLO training and prediction outputs
+runs/
+**/runs/
+
+# Trained model files
 *.pt
 *.onnx
+
+# Dataset
+dataset/
 
 # Uploaded images
 uploads/
